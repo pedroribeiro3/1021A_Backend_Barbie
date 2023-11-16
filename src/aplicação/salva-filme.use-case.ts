@@ -1,13 +1,13 @@
-import BancoEmMemoria from "../infra/banco/banco-em-memoria"
-class SalvaFilme{
-    private banco = new BancoEmMemoria()
-    constructor(){}
-    public execute(input:Input):Output|undefined{
+import FilmeRepositorioInterface from "./filme-repositorio-interface"
+class SalvaFilme {
+    
+    constructor(private bancoInterface:FilmeRepositorioInterface){}
+    public async execute(input:Input):Promise<Output|undefined>{
         const {id, titulo, descricao, foto} = input
 
         //Salvar no banco
-        this.banco.salvar({id,titulo,descricao,foto})
-        const resultado = this.banco.salvar({id,titulo,descricao,foto})
+        this.bancoInterface.salvar({id,titulo,descricao,foto})
+        const resultado = await this.bancoInterface.salvar({id,titulo,descricao,foto})
 
         //Retornar
         if(!resultado) return undefined
