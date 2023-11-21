@@ -13,8 +13,7 @@ app.get('/filmes', async (req, res) => {
     res.status(200).send(filmes)        
 });
 
-app.post('/filmes', (req:Request, res) => {
-    try{
+app.post('/filmes', async (req:Request, res) => {
     const {id, titulo, descricao, foto} = req.body
     const filme:Filme = {
         id,
@@ -24,15 +23,16 @@ app.post('/filmes', (req:Request, res) => {
     }
     const salvarFilme = new SalvaFilme(bancoMongoDB)
     const filmes = await salvarFilme.execute(filme)
-    const repeticaocadastro = filmes_repositorio.find(filme => filme.id === id)
-    if(repeticaocadastro){
-        return res.status(400).send({error: "Filme ja cadastro"});
+    
+    const filmerepetido = filmes_repositorio.find(filme => filme.id === id)
+    if(filmerepetido){
+         return res.status(400).send({error: 'Filme já cadastrado'})
     }
+
     filmes_repositorio.push(filme)
     res.status(201).send(filmes)
-    }
-    
 });
+
 
 app.delete('/filmes/:id', (req, res) => {
     const id = parseInt(req.params.id)
