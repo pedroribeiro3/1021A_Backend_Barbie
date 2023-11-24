@@ -7,7 +7,7 @@ describe('Testando usecase de salvar filme',()=>{
         const filme = {
             id: 1,
             titulo: "test",
-            descricao: "test",
+            sinopse: "test",
             foto: "test"
         }
 

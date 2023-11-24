@@ -2,9 +2,13 @@ import express, {Request} from 'express';
 import BancoMongoDB from './infra/banco/banco-mongodb';
 import ListarFilme from './aplicação/listar-filme.use-case'
 import SalvaFilme from './aplicação/salva-filme.use-case';
-const bancoMongoDB = new BancoMongoDB()
-const app = express();
+import cors from 'cors';
+const app = express()
 app.use(express.json())
+app.use(cors())
+
+const bancoMongoDB = new BancoMongoDB()
+
 
 
 app.get('/filmes', async (req, res) => {
@@ -14,11 +18,11 @@ app.get('/filmes', async (req, res) => {
 });
 
 app.post('/filmes', async (req:Request, res) => {
-    const {id, titulo, descricao, foto} = req.body
+    const {id, titulo, sinopse, foto} = req.body
     const filme:Filme = {
         id,
         titulo,
-        descricao,
+        sinopse,
         foto,
     }
     const salvarFilme = new SalvaFilme(bancoMongoDB)
@@ -53,7 +57,7 @@ app.listen(3000, () => {
 type Filme = {
     id: number,
     titulo: string,
-    descricao: string,
+    sinopse: string,
     foto: string,
 }
 let filmes_repositorio:Filme[] = []

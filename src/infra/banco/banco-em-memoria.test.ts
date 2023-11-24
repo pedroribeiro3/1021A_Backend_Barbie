@@ -6,7 +6,7 @@ describe("Banco em memória",()=>{
         const input= {
             id: 1,
             titulo: "test",
-            descricao: "test",
+            sinopse: "test",
             foto: "test",
         }
         const bancoEmMemoria = new BancoEmMemoria();

@@ -9,7 +9,7 @@ describe("Banco MongoDB",()=>{
         const input= {
             id:1,
             titulo:"test",
-            descricao:"test",
+            sinopse:"test",
             foto:"test",
         }
         const result = await bancoMongoDB.salvar(input)
@@ -20,7 +20,7 @@ describe("Banco MongoDB",()=>{
         const input= {
             id:1,
             titulo:"test",
-            descricao:"test",
+            sinopse:"test",
             foto:"test",
         }
         await bancoMongoDB.salvar(input)

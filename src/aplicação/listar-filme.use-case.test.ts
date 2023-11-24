@@ -9,13 +9,13 @@ describe("Listar filme",()=>{
             {
                 id:1,
                 titulo:"test",
-                descricao:"test",
+                sinopse:"test",
                 foto:"test",
             },
             {
                 id:2,
                 titulo:"test",
-                descricao:"test",
+                sinopse:"test",
                 foto:"test",
             }
         ]
@@ -27,13 +27,13 @@ describe("Listar filme",()=>{
         expect(result[0]).toEqual({
             id:1,
             titulo:"test",
-            descricao:"test",
+            sinopse:"test",
             foto:"test",
         })
         expect(result[1]).toEqual({
             id:2,
             titulo:"test",
-            descricao:"test",
+            sinopse:"test",
             foto:"test",
         })
     })
